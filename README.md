@@ -1,1 +1,1 @@
-# fair-weather-trails
+# https://fair-weather-trails.herokuapp.com/

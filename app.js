@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+require('dotenv').load();
+var unirest = require('unirest');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -24,6 +26,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.get('/styleguide', function (req, res) {res.render('styleguide')})
+
+app.get('/trails', function(req, res) {
+    unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY)
+      .end(function (response) {
+        console.log(response.body);
+      })
+})
+
+app.get('/weather', function(req, res) {
+    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/Boulder.json')
+      .end(function (response) {
+        console.log(response.body.forecast.txt_forecast.forecastday); //returns an array of periods for which I'll need to iterate over in handlebars
+      res.end()
+      })
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,6 +64,7 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
 
 // production error handler
 // no stacktraces leaked to user
