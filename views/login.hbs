@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+<form action="/users/login" method="post">
+  <p>
+    <input type="email" name="email" placeholder="enter your email" value="{{content.email}}">
+  </p>
+  <p>
+    <input type="password" name="password" placeholder="enter your password" value="{{content.password}}">
+  </p>
+  <input type="submit" value="Submit">
+</form>
+
+{{#each loginErrors}}
+  <p class="error">{{this}}</p>
+{{/each}}

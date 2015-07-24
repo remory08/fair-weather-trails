@@ -1,0 +1,16 @@
+<form  action="/users/register" method="post">
+  <p>
+    <input type="text" name="name" placeholder="What's your name?">
+  </p>
+  <p>
+    <input type="email" name="email" placeholder="enter your email">
+  </p>
+  <p>
+    <input type="password" name="password" placeholder="set your password">
+  </p>
+  <input type="submit" value="Register">
+</form>
+
+{{#each errors}}
+  <p class="error">{{this}}</p>
+{{/each}}
