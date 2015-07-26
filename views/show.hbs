@@ -1,4 +1,15 @@
-<h1>Trail id page, shows a single trail when you click on it, user can save</h1>
-<form  action="/users/{{_id}}" method="post">
-    <input type="submit" name="saveTrail" value="Save Trail">
-</form>
+{{#if trail}}
+  {{#each trail}}
+  <h3>{{name}}</h3>
+  <h4>Directions: {{directions}}</h4>
+  <p><h4>Activities:</h4>
+      <ul>
+    {{#each activities}}
+      <li>{{activity_type_name}}</li>  
+    {{/each}}
+    </ul>
+  {{/each}}
+  <form  action="/viewtrail/{{_id}}" method="post">
+      <input type="submit" name="saveTrail" value="Save Trail">
+  </form>
+{{/if}}

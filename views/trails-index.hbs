@@ -1,12 +1,33 @@
 {{#if trails}}
-  <h2>Trails Near Aspen</h2>
+  {{#if city}}
+    <h2>Trails Near {{city}}</h2>
+  {{/if}}
   {{#each trails}}
-    <a href="/trails/{{_id}}">{{name}}</a>
+    <form action="/trails/viewtrail/{{unique_id}}" method="get">
+      <input type="text" name="name" value="{{name}}" hidden>
+      <!-- <input type="text" name="directions" hidden value="{{directions}}"> -->
+      <!-- <input type="text" name="activities" value={{activities}} hidden> -->
+      <input type="submit" value="{{name}}">
+    </form>
     {{#if description}}<p><h4>Description: </h4>{{description}}</p>{{/if}}
     <p><h4>Activities:</h4>
       {{#each activities}}
-        {{activity_type_name}}
+        <p>
+          {{activity_type_name}}
+        </p>
       {{/each}}
+    </p>
+  {{/each}}
+{{/if}}
+{{#if weather}}
+  {{#if city}}
+    <h2>3 Day forcast for {{city}}</h2>
+  {{/if}}
+  {{#each weather}}
+    <img src="{{icon_url}}" alt="" />
+    <h5>{{title}}</h5>
+    <p>
+      {{fcttext}}
     </p>
   {{/each}}
 {{/if}}
