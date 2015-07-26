@@ -13,6 +13,7 @@ var hbs = require('hbs');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var trails = require('./routes/trails');
 
 var app = express();
 
@@ -73,22 +74,24 @@ app.use(function (req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/trails', trails);
+
 app.get('/styleguide', function (req, res) {res.render('styleguide')})
 
-app.get('/trails', function(req, res) {
-    unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY)
-      .end(function (response) {
-        console.log(response.body);
-      })
-})
+// app.get('/trails', function(req, res) {
+//     unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY)
+//       .end(function (response) {
+//         console.log(response.body);
+//       })
+// })
 
-app.get('/weather', function(req, res) {
-    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/Boulder.json')
-      .end(function (response) {
-        console.log(response.body.forecast.txt_forecast.forecastday); //returns an array of periods for which I'll need to iterate over in handlebars
-      res.end()
-      })
-})
+// app.get('/weather', function(req, res) {
+//     unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/Boulder.json')
+//       .end(function (response) {
+//         console.log(response.body.forecast.txt_forecast.forecastday); //returns an array of periods for which I'll need to iterate over in handlebars
+//       res.end()
+//       })
+// })
 
 
 // catch 404 and forward to error handler

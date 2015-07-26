@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Fair Weather Trails' });
+  res.render('index', {title: 'Fair Weather Trails', user: req.session.user});
 });
 
 

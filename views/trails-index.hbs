@@ -1,0 +1,12 @@
+{{#if trails}}
+  <h2>Trails Near Aspen</h2>
+  {{#each trails}}
+    <a href="/trails/{{_id}}">{{name}}</a>
+    {{#if description}}<p><h4>Description: </h4>{{description}}</p>{{/if}}
+    <p><h4>Activities:</h4>
+      {{#each activities}}
+        {{activity_type_name}}
+      {{/each}}
+    </p>
+  {{/each}}
+{{/if}}
