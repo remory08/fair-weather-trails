@@ -13,5 +13,17 @@
       <li>{{activity_type_name}}</li>
   {{/each}}
 </ul>
+{{/if}}
 
+{{#if weather}}
+  {{#if city}}
+    <h2>3 Day forcast for {{city}}</h2>
+  {{/if}}
+  {{#each weather}}
+    <img src="{{icon_url}}" alt="" />
+    <h5>{{title}}</h5>
+    <p>
+      {{fcttext}}
+    </p>
+  {{/each}}
 {{/if}}

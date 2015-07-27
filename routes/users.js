@@ -102,7 +102,10 @@ router.get('/profile/trails/:id', function(req, res, next) {
   trails.findOne({_id: req.query.trailId}, function (err, trail) {
     if (err) return err
     console.log(trail.city)
-    res.render('saved-trail', {user: req.session.user, trail: trail})
+    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+trail.city+'.json')
+      .end(function(weather) {
+        res.render('saved-trail', {user: req.session.user, trail: trail, weather: weather.body.forecast.txt_forecast.forecastday})
+      })
   })
 })
 
