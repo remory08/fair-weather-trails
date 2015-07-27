@@ -4,6 +4,7 @@ var db = require('monk')(process.env.MONGOLAB_URI);
 var users = db.get('users');
 var trails = db.get('trails');
 var bcrypt = require('bcryptjs');
+var unirest = require ('unirest');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -47,7 +48,8 @@ router.post('/register', function(req, res) {
 })
 
 router.get('/register/google', function(req, res, next) {
-  res.render('', {displayName: res.body.displayName});
+  console.log(req.session)
+  res.render('/users/profile/:id', {displayName: res.body.displayName});
 });
 
 router.get('/login', function(req, res, next) {
@@ -75,7 +77,7 @@ router.post('/login', function(req, res) {
           // console.log(doc)
           req.session.id = doc._id;
           req.session.user = doc.name;
-          res.redirect('/users/:id')
+          res.redirect('./profile/:id')
         }
         else {
           loginErrors.push('Incorrect email and password combo')
@@ -95,21 +97,43 @@ router.get('/logout', function(req, res) {
   res.redirect('/')
 })
 
-router.get('/:id', function (req, res) {
-  users.findOne({_id: req.session.id}, function (err, doc) {
-    console.log(req.session.id)
-    if (err) return err;
-    res.render('profile', {users: doc})
+router.get('/profile/trails/:id', function(req, res, next) {
+  // console.log(req.query)
+  trails.findOne({_id: req.query.trailId}, function (err, trail) {
+    if (err) return err
+    console.log(trail.city)
+    res.render('saved-trail', {user: req.session.user, trail: trail})
+  })
+})
+
+
+router.get('/profile/:id', function (req, res) {
+  users.findOne({_id: req.session.id}, function(err, user) {
+      if (err) return err
+      trails.find({_id: {$in: user.savedTrails}}, function (err, trails) {
+        if (err) return err
+        console.log(trails);
+        res.render('profile', {user: req.session.user, trails: trails})
+      })
   })
 });
 
-router.post('/:id', function(req, res, next) {
-  trails.findOne({_id: req.params.id}, function (err, trail) {
-    if (err)  return err
-    users.findOne({_id: req.session.id}, function (err, user) {
-      users.insert({trails: trail._id}, function (err, doc) {
+router.post('/profile/:id', function(req, res, next) {
+  // console.log(req.body)
+  unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[name_eq]='+req.body.name)
+  .end(function (trail) {
+    trail = trail.body.places.shift()
+    // console.log(trail)
+    trails.insert(trail, function (err, doc){
+      if (err) return err
+      // console.log(doc._id)
+      users.update({_id: req.session.id}, {$push: {savedTrails: doc._id}})
+      users.findOne({_id: req.session.id}, function (err, user) {
         if (err) return err
-        res.redirect('/:id')
+        trails.find({_id: {$in: user.savedTrails}}, function (err, trails) {
+          if (err) return err
+          res.render('profile', {trails: trails, user: req.session.user})
+        })
       })
     })
   })

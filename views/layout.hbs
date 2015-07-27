@@ -7,17 +7,22 @@
   <body>
     {{#if user}}
       <p>
-        Hello {{user.displayName}}
+        {{user}}{{displayName}}
         |
         <a href="/users/logout">Logout</a>
+        |
+        <a href="/users/profile/:id">Saved Trails</a>
+        |
+        <a href="/trails"><button type="button" name="button">Find a Trail</button></a>
       </p>
       {{else}}
       <p>log in to have fun</p>
+      <a href="/users/login">Login</a>
+      <a href="/users/register">Register</a>
+      <a href="/auth/google">Login/Register with your Google Account</a>
     {{/if}}
     {{{body}}}
-    <a href="/users/login">Login</a>
-    <a href="/users/register">Register</a>
-    <a href="/auth/google">Login/Register with your Google Account</a>
+
 <!--     <a href="/users/logout">Logout</a>
  -->    <a href="/">Home</a>
   </body>

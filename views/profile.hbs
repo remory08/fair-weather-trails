@@ -1,1 +1,11 @@
-<p>hello from the user's profile</p>
+{{#if user}}
+  <h3>{{user}}'s Trails</h3>
+{{/if}}
+{{#if trails}}
+  {{#each trails}}
+  <form action="/users/profile/trails/:id" method="get">
+    <input type="text" hidden name="trailId" value="{{_id}}">
+    <input type="submit" value="{{name}}">
+  </form>
+  {{/each}}
+{{/if}}

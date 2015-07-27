@@ -1,0 +1,17 @@
+{{#if trail}}
+<p>
+   {{trail.name}}
+</p>
+<p>
+  {{trail.description}}
+</p>
+<p>
+  {{trail.directions}}
+</p>
+<ul>
+  {{#each trail.activities}}
+      <li>{{activity_type_name}}</li>
+  {{/each}}
+</ul>
+
+{{/if}}
