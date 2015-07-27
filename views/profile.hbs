@@ -7,5 +7,9 @@
     <input type="text" hidden name="trailId" value="{{_id}}">
     <input type="submit" value="{{name}}">
   </form>
+  <form action="/users/profile/trails/:id" method="post">
+    <input type="text" hidden name="trailId" value="{{_id}}">
+    <input type="submit" value="X ">
+  </form>
   {{/each}}
 {{/if}}

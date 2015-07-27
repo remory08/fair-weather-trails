@@ -109,13 +109,40 @@ router.get('/profile/trails/:id', function(req, res, next) {
   })
 })
 
+router.post('/profile/trails/:id', function (req, res, next) {
+  users.findOne({name: req.session.user}, function (err, user) {
+    if (err) return err
+    // console.log(user)
+    var trails = user.savedTrails
+    var index = trails.indexOf(req.body.trailId)
+    if (index > -1) {
+    trails.splice(index, 1);
+    console.log(trails)
+    }
+
+    // for (i=0; i < trails.length; i++) {
+    //   console.log(trails[i])
+    //   if (trails[i] === req.body.trailId) {
+    //     trails.splice(trails[i], 1)
+    //   }
+    // }
+
+  // users.update({name: req.session.user}, {$pull: {savedTrails: req.body.trailId}}, function(err, data) {
+  //   if (err) return err
+    res.redirect('/users/profile/:id')
+  // })
+  })
+  // console.log(req.session.user)
+  // console.log(req.body.trailId)
+})
 
 router.get('/profile/:id', function (req, res) {
+  // console.log(req.session)
   users.findOne({_id: req.session.id}, function(err, user) {
       if (err) return err
       trails.find({_id: {$in: user.savedTrails}}, function (err, trails) {
         if (err) return err
-        console.log(trails);
+        // console.log(trails);
         res.render('profile', {user: req.session.user, trails: trails})
       })
   })
@@ -126,7 +153,6 @@ router.post('/profile/:id', function(req, res, next) {
   unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[name_eq]='+req.body.name)
   .end(function (trail) {
     trail = trail.body.places.shift()
-    // console.log(trail)
     trails.insert(trail, function (err, doc){
       if (err) return err
       // console.log(doc._id)
