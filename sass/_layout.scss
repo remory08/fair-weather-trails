@@ -2,19 +2,38 @@
   width: 70%;
   margin-left: 15%;
   padding: 10px;
+  position: absolute;
+  height: 70%;
+  background-color: rgba(255,255,255, 0.9);
+  overflow-y: hidden;
+  overflow: scroll;
+  height: 600px;
+}
+
+.trailid {
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px;
+  position: absolute;
+  height: 70%;
+  background-color: rgba(255,255,255, 0.9);
+  overflow-y: hidden;
+  overflow: scroll;
+  height: 70%;
+  margin-bottom: 100px;
 }
 
 .trail-list {
   width: 28%;
-  margin-top: 30px;
   margin-right: 5%;
   float: left;
-  margin-bottom: 20px;
-  height: 250px;
-
+  margin-top: 30px;
+  height: 300px;
 }
 .weather {
   position: absolute;
+  background-color: rgba(255,255,255, 0.9);
+  top: 560px;
   width: 70%;
   margin-left: 15%;
   padding: 10px;

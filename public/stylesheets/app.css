@@ -48,18 +48,37 @@ table {
 .trail {
   width: 70%;
   margin-left: 15%;
-  padding: 10px; }
+  padding: 10px;
+  position: absolute;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-y: hidden;
+  overflow: scroll;
+  height: 600px; }
+
+.trailid {
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px;
+  position: absolute;
+  height: 70%;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-y: hidden;
+  overflow: scroll;
+  height: 70%;
+  margin-bottom: 100px; }
 
 .trail-list {
   width: 28%;
-  margin-top: 30px;
   margin-right: 5%;
   float: left;
-  margin-bottom: 20px;
-  height: 250px; }
+  margin-top: 30px;
+  height: 300px; }
 
 .weather {
   position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  top: 560px;
   width: 70%;
   margin-left: 15%;
   padding: 10px; }
@@ -89,7 +108,7 @@ input[type='submit'], button {
 
 #trail-name {
   background-color: #D4D4aa;
-  color: #EBF5DF;
+  color: #E8871E;
   border-radius: 5px;
   font-size: 20px;
   padding: 10px;
@@ -123,10 +142,17 @@ h2 {
 
 h3 {
   font-size: 1.999em;
-  color: #E8871E; }
+  color: #BAD4AA; }
 
 h4 {
   font-size: 1.414em; }
 
 small, .font_small {
   font-size: 0.707em; }
+
+html {
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
