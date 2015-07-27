@@ -110,30 +110,14 @@ router.get('/profile/trails/:id', function(req, res, next) {
 })
 
 router.post('/profile/trails/:id', function (req, res, next) {
-  users.findOne({name: req.session.user}, function (err, user) {
+  trails.findOne({_id: req.body.trailId}, function (err, trail) {
     if (err) return err
-    // console.log(user)
-    var trails = user.savedTrails
-    var index = trails.indexOf(req.body.trailId)
-    if (index > -1) {
-    trails.splice(index, 1);
-    console.log(trails)
-    }
-
-    // for (i=0; i < trails.length; i++) {
-    //   console.log(trails[i])
-    //   if (trails[i] === req.body.trailId) {
-    //     trails.splice(trails[i], 1)
-    //   }
-    // }
-
-  // users.update({name: req.session.user}, {$pull: {savedTrails: req.body.trailId}}, function(err, data) {
-  //   if (err) return err
-    res.redirect('/users/profile/:id')
-  // })
+    users.update({name: req.session.user}, {$pull: {savedTrails: trail._id}}, function(err, data) {
+      //db.users.update({name: 'Ryne'}, {$pull: {savedTrails: ObjectId("55b596ef97427b898a1a3c48") }}) === works in mongo shell!!!
+      if (err) return err
+      res.redirect('/users/profile/:id')
+    })
   })
-  // console.log(req.session.user)
-  // console.log(req.body.trailId)
 })
 
 router.get('/profile/:id', function (req, res) {
