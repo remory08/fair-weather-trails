@@ -1,14 +1,20 @@
 {{#if trail}}
   <h3>{{trail.name}}</h3>
-  <h5>Descrtiption: {{trail.description}}</h5>
+  <h5>Description: {{trail.description}}</h5>
   <h4>Directions: {{trail.directions}}</h4>
-  <p><h4>Activities:</h4>
-      <ul>
-
+  <div class="activities">
+  <p><h3>Activities:</h3>
     {{#each trail.activities}}
-      <li>{{activity_type_name}}</li>
+      <h4>{{activity_type_name}}</h4>
+      <p>
+        {{description}}
+      </p>
+      <a href="{{url}}">More details</a>
+      {{#each trail.activities.activity_type}}
+        <img src="{{thumbnail}}"/>
+      {{/each}}
     {{/each}}
-    </ul>
+</div>
   <form  action="/users/profile/:id" method="post">
     <input type="text" name="name" value="{{trail.name}}" hidden>
     <input type="submit" name="saveTrail" value="Save Trail">

@@ -1,29 +1,40 @@
 {{#if trail}}
+<section class="trail">
 <p>
-   {{trail.name}}
+  <h1>{{trail.name}}</h1>
 </p>
+
+<p>{{trail.description}}</p>
 <p>
-  {{trail.description}}
+  <h3>Directions: </h3>
 </p>
-<p>
-  {{trail.directions}}
-</p>
-<ul>
+<p>{{trail.directions}}</p>
+<p><h3>Activities:</h3>
   {{#each trail.activities}}
-      <li>{{activity_type_name}}</li>
+    <h4>{{activity_type_name}}</h4>
+    <p>
+      {{description}}
+    </p>
+    <a href="{{url}}">More details</a>
+    {{#each activity_type}}
+      <img src="{{thumbnail}}"/>
+    {{/each}}
   {{/each}}
-</ul>
+</div>
+</section>
 {{/if}}
 
 {{#if weather}}
-  {{#if city}}
+<section class= "weather">
+    {{#if city}}
     <h2>3 Day forcast for {{city}}</h2>
   {{/if}}
   {{#each weather}}
-    <img src="{{icon_url}}" alt="" />
-    <h5>{{title}}</h5>
-    <p>
-      {{fcttext}}
-    </p>
+    <article class="weather-tile">
+    <img src="{{icon_url}}"/>
+    <h4 class="weather-title">{{title}}</h5>
+    <p class="forecast">{{fcttext}}</p>
+    </article>
   {{/each}}
+</section>
 {{/if}}

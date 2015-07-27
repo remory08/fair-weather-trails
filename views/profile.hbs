@@ -1,15 +1,28 @@
 {{#if user}}
-  <h3>{{user}}'s Trails</h3>
+  <section class="trail">
+    <p id="profile-header">
+      <h3>{{user}}'s Trails</h3>
+    </p>
 {{/if}}
 {{#if trails}}
   {{#each trails}}
-  <form action="/users/profile/trails/:id" method="get">
-    <input type="text" hidden name="trailId" value="{{_id}}">
-    <input type="submit" value="{{name}}">
-  </form>
-  <form action="/users/profile/trails/:id" method="post">
-    <input type="text" hidden name="trailId" value="{{_id}}">
-    <input type="submit" value="X ">
-  </form>
+    <article class="trail-list">
+    <form action="/users/profile/trails/:id" method="get" id="trail-tile">
+      <input type="text" hidden name="trailId" value="{{_id}}">
+      <input type="submit" value="{{name}}" id="trail-name">
+    </form>
+    <p><h5>Nearest city: {{city}}</h5></p>
+    <p>
+      <h5>Activities: </h5>
+    </p>
+    {{#each activities}}
+      <li>{{activity_type_name}}</li>
+    {{/each}}
+    <form action="/users/profile/trails/:id" method="post">
+      <input type="text" hidden name="trailId" value="{{_id}}">
+      <input type="submit" value="X ">
+    </form>
+  </article>
   {{/each}}
+  </section>
 {{/if}}

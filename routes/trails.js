@@ -12,6 +12,9 @@ router.get('/', function (req, res, next) {
 router.get('/index', function(req, res) {
     unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]='+req.query.city+'&q[state_eq]='+req.query.state+'&radius='+req.query.radius)
       .end(function (trails) {
+        if (trails.body.places.activities) {
+        console.log(trails.body.places.activities)
+        }
         unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+req.query.city+'.json')
           .end(function (weather) {
           res.render('trails-index', {city: req.query.city, trails: trails.body.places, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})
@@ -25,6 +28,7 @@ router.get('/viewtrail/:id', function(req, res,next) {
   // req.params.id = unique_id
   .end(function (trail) {
     trail = trail.body.places.shift()
+    console.log(trail.activities)
     unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+trail.city+'.json')
     .end(function(weather) {
       res.render('show', {trail: trail, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})

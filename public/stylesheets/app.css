@@ -45,10 +45,55 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.trail {
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px; }
+
+.trail-list {
+  width: 28%;
+  margin-top: 30px;
+  margin-right: 5%;
+  float: left;
+  margin-bottom: 20px;
+  height: 250px; }
+
+.weather {
+  position: absolute;
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px; }
+  .weather .weather-tile {
+    width: 21%;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    height: 250px; }
+  .weather .weather-title {
+    color: orange;
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    float: left; }
+  .weather img {
+    display: inline-block;
+    float: right; }
+  .weather .forecast {
+    margin-top: 100px; }
+
 input[type='submit'], button {
   border: red;
   color: white;
   border-radius: 3px; }
+
+#trail-name {
+  background-color: #D4D4aa;
+  color: #EBF5DF;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px;
+  width: 100%; }
 
 html {
   font-size: 1em; }
@@ -70,13 +115,15 @@ h1, h2, h3, h4 {
 
 h1 {
   margin-top: 0;
-  font-size: 3.998em; }
+  font-size: 3.998em;
+  color: #EDBF58; }
 
 h2 {
   font-size: 2.827em; }
 
 h3 {
-  font-size: 1.999em; }
+  font-size: 1.999em;
+  color: #E8871E; }
 
 h4 {
   font-size: 1.414em; }

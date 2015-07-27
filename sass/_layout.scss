@@ -1,0 +1,43 @@
+.trail {
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px;
+}
+
+.trail-list {
+  width: 28%;
+  margin-top: 30px;
+  margin-right: 5%;
+  float: left;
+  margin-bottom: 20px;
+  height: 250px;
+
+}
+.weather {
+  position: absolute;
+  width: 70%;
+  margin-left: 15%;
+  padding: 10px;
+  .weather-tile {
+    width: 21%;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    height: 250px;
+  }
+  .weather-title {
+    color: orange;
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    float: left;
+  }
+  img {
+  display: inline-block;
+  float: right;
+  }
+  .forecast {
+    margin-top: 100px;
+  }
+}
