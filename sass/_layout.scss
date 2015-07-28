@@ -37,6 +37,7 @@
   width: 70%;
   margin-left: 15%;
   padding: 10px;
+
   .weather-tile {
     width: 21%;
     float: left;
@@ -61,6 +62,21 @@
   }
 }
 
+.small-weather{
+  width: 12%;
+  float: left;
+  margin-left: 4px;
+}
+
+.weather-head {
+  width: 90%;
+  margin-left: 5%;
+  top: 150px;
+  img {
+    margin-right: 2px;
+  }
+}
+
 .find-trail {
   position: absolute;
   background-color: rgba(255,255,255,0.9);
@@ -79,4 +95,17 @@
       text-decoration: none;
     }
   }
+}
+
+.trail-results {
+  position: absolute;
+  background-color: rgba(255,255,255, 0.9);
+  top: 700px;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.trail-result {
+  width: 27%;
+  float: left;
 }

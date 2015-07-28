@@ -11,6 +11,9 @@
       <input type="text" hidden name="trailId" value="{{_id}}">
       <input type="submit" value="{{name}}" id="trail-name">
     </form>
+    {{#each activities}}
+      <img src="{{thumbnail}}" class="icon" />
+    {{/each}}
     <p><h5>Nearest city: {{city}}</h5></p>
     <p>
       <h5>Activities: </h5>
@@ -20,7 +23,7 @@
     {{/each}}
     <form action="/users/profile/trails/:id" method="post">
       <input type="text" hidden name="trailId" value="{{_id}}">
-      <input type="submit" value="X ">
+      <input type="submit" value="X">
     </form>
   </article>
   {{/each}}

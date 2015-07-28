@@ -13,14 +13,14 @@
 <p>{{trail.directions}}</p>
 <p><h3>Activities:</h3>
   {{#each trail.activities}}
+    <img class="thumbnail" src="{{thumbnail}}"/>
     <h4>{{activity_type_name}}</h4>
     <p>
       {{description}}
     </p>
     <a href="{{url}}">More details</a>
-    {{#each activity_type}}
-      <img src="{{thumbnail}}"/>
-    {{/each}}
+    <!-- {{#each activity_type}}
+    {{/each}} -->
   {{/each}}
 </div>
 </section>

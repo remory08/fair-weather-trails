@@ -101,6 +101,18 @@ table {
   .weather .forecast {
     margin-top: 100px; }
 
+.small-weather {
+  width: 12%;
+  float: left;
+  margin-left: 4px; }
+
+.weather-head {
+  width: 90%;
+  margin-left: 5%;
+  top: 150px; }
+  .weather-head img {
+    margin-right: 2px; }
+
 .find-trail {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.9);
@@ -116,14 +128,39 @@ table {
     color: white;
     text-decoration: none; }
 
+.trail-results {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  top: 700px;
+  width: 90%;
+  margin-left: 5%; }
+
+.trail-result {
+  width: 27%;
+  float: left; }
+
+.thumbnail {
+  max-width: 300px;
+  float: left;
+  margin-left: 10px; }
+
+.icon {
+  max-width: 150px;
+  margin-left: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+  border: 3px solid #EDBF58; }
+
+input[type='text'], #state {
+  font-size: 14px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  line-height: 2;
+  padding: 5px; }
+
 input[type='submit'], button {
   border: red;
   color: white;
-  border-radius: 3px; }
-
-input[type='text'] {
-  padding: 10px;
-  font-size: 14px;
   border-radius: 3px; }
 
 #trail-name {
@@ -179,6 +216,9 @@ small, .font_small {
 
 .jumbotron {
   color: #76763c; }
+
+.error {
+  color: red; }
 
 .user-nav {
   background: #D4D4aa;

@@ -1,12 +1,27 @@
-
-
-
+{{#if weather}}
+  <div class="weather weather-head">
+  {{#if city}}
+    <h2>3 Day forecast for {{city}}</h2>
+  {{/if}}
+  {{#each weather}}
+    <article class="small-weather">
+      <img src="{{icon_url}}" alt="" />
+      <h5 class="weather-title">{{title}}</h5>
+      <p class="forecast">{{fcttext}}</p>
+    </article>
+  {{/each}}
+  </div>
+{{/if}}
 
 {{#if trails}}
+  <div class="trail-results">
   {{#if city}}
     <h2>Trails Near {{city}}</h2>
   {{/if}}
   {{#each trails}}
+    <div class="trail-result">
+
+
     <form action="/trails/viewtrail/{{unique_id}}" method="get">
       <input type="text" name="name" value="{{name}}" hidden>
       <!-- <input type="text" name="directions" hidden value="{{directions}}"> -->
@@ -14,24 +29,17 @@
       <input type="submit" value="{{name}}">
     </form>
     {{#if description}}<p><h4>Description: </h4>{{description}}</p>{{/if}}
+    {{#if activities}}
     <p><h4>Activities:</h4>
       {{#each activities}}
+        <img src="{{thumbnail}}" class="thumbnail" />
         <p>
           {{activity_type_name}}
         </p>
       {{/each}}
+      {{/if}}
     </p>
+    </div>
   {{/each}}
-{{/if}}
-{{#if weather}}
-  {{#if city}}
-    <h2>3 Day forcast for {{city}}</h2>
-  {{/if}}
-  {{#each weather}}
-    <img src="{{icon_url}}" alt="" />
-    <h5>{{title}}</h5>
-    <p>
-      {{fcttext}}
-    </p>
-  {{/each}}
+  </div>
 {{/if}}

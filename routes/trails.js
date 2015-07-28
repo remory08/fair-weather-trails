@@ -10,16 +10,29 @@ router.get('/', function (req, res, next) {
 })
 
 router.get('/index', function(req, res) {
+  console.log(req.query)
+  var searchErrors = [];
+  if (!req.query.state || req.query.state === 'null') {
+    searchErrors.push("Please enter a state")
+  }
+  if (!req.query.city) {
+    searchErrors.push("Please enter a city")
+  }
+  if (searchErrors.length) {
+    res.render('trailSearch', {errors: searchErrors})
+  }
+  else {
     unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]='+req.query.city+'&q[state_eq]='+req.query.state+'&radius='+req.query.radius)
       .end(function (trails) {
         if (trails.body.places.activities) {
         console.log(trails.body.places.activities)
         }
-        unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+req.query.city+'.json')
+        unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+req.query.state+'/'+req.query.city+'.json')
           .end(function (weather) {
           res.render('trails-index', {city: req.query.city, trails: trails.body.places, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})
           })
       })
+  }
 })
 
 router.get('/viewtrail/:id', function(req, res,next) {
@@ -29,7 +42,7 @@ router.get('/viewtrail/:id', function(req, res,next) {
   .end(function (trail) {
     trail = trail.body.places.shift()
     console.log(trail.activities)
-    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+trail.city+'.json')
+    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+trail.state+'/'+trail.city+'.json')
     .end(function(weather) {
       res.render('show', {trail: trail, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})
     })
