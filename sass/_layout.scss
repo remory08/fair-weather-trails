@@ -33,7 +33,7 @@
 .weather {
   position: absolute;
   background-color: rgba(255,255,255, 0.9);
-  top: 560px;
+  top: 690px;
   width: 70%;
   margin-left: 15%;
   padding: 10px;
@@ -58,5 +58,25 @@
   }
   .forecast {
     margin-top: 100px;
+  }
+}
+
+.find-trail {
+  position: absolute;
+  background-color: rgba(255,255,255,0.9);
+  width: 70%;
+  margin-left: 15%;
+  padding: 20px;
+}
+
+.user-nav {
+  nav {
+    float: right;
+    color: white;
+    line-height: 2;
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
 }
