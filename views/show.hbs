@@ -1,7 +1,10 @@
+<section class="trailid">
 {{#if trail}}
-  <h3>{{trail.name}}</h3>
-  <h5>Description: {{trail.description}}</h5>
-  <h4>Directions: {{trail.directions}}</h4>
+  <h2>{{trail.name}}</h2>
+  {{#if trail.desctiption}}
+  <h5>Description: </h5><h6>{{trail.description}}</h6>
+  {{/if}}
+  <h4>Directions: </h4><h5>{{trail.directions}}</h5>
   <div class="activities">
   <p><h3>Activities:</h3>
     {{#each trail.activities}}
@@ -18,19 +21,22 @@
 </div>
   <form  action="/users/profile/:id" method="post">
     <input type="text" name="name" value="{{trail.name}}" hidden>
-    <input type="submit" name="saveTrail" value="Save Trail">
+    <input type="submit" name="saveTrail" value="Save Trail" id="saveTrail">
   </form>
 {{/if}}
+</section>
 
+<section class= "weather">
 {{#if weather}}
   {{#if city}}
     <h2>3 Day forcast for {{city}}</h2>
   {{/if}}
   {{#each weather}}
+  <section class="weather-tile">
     <img src="{{icon_url}}" alt="" />
-    <h5>{{title}}</h5>
-    <p>
-      {{fcttext}}
-    </p>
+    <h4 class="weather-title">{{title}}</h5>
+    <p class="forecast">{{fcttext}}</p>
+    </section>
   {{/each}}
 {{/if}}
+</section>

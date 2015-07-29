@@ -5,7 +5,7 @@
     <p class="error">{{this}}</p>
   {{/each}}
 {{/if}}
-<form class="" action="/trails/index" method="get">
+<form class="" action="/trails/index" method="get" id="chooseLocation">
   <!-- <section> -->
     <!-- <p><label for="date">Date</label></p> -->
     <!-- <p><input type="date" id="date" name="date"></p> -->
@@ -28,8 +28,8 @@
   <!-- </section> -->
   <section>
     <h4>Location</h4>
-    <input type="text" name="city" id="city" placeholder="city" autofocus>
-    <p><select name="state" id="state">
+    <input type="text" name="city" id="userCity" placeholder="city" autofocus>
+    <p><select name="state" id="userState">
       <option value=null>State</option>
     	<option value="Alabama">Alabama</option>
     	<option value="Alaska">Alaska</option>
@@ -83,8 +83,8 @@
     	<option value="Wisconsin">Wisconsin</option>
     	<option value="Wyoming">Wyoming</option>
     </select></p>
-    <!-- <input type="text" name="radius" placeholder="radius"> -->
+    <!-- <input type="text" name="radius" placeholder="radius" id="userRadius"> -->
   </section>
-  <input id="findtrail" type="submit" value="Go">
+  <input id="findtrail" type="submit" value="Go find me a trail!">
 </form>
 </section>

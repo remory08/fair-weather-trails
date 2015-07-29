@@ -37,7 +37,7 @@ router.post('/register', function(req, res) {
             if (err) return err;
             req.session.id = doc._id;
             // console.log("req session = " + req.session)
-            res.redirect('../')
+            res.redirect('/users/login')
           })
         } else {
           errors.push("user already exists, please login")
@@ -101,8 +101,9 @@ router.get('/profile/trails/:id', function(req, res, next) {
   // console.log(req.query)
   trails.findOne({_id: req.query.trailId}, function (err, trail) {
     if (err) return err
+    console.log(trail)
     console.log(trail.city)
-    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/CO/'+trail.city+'.json')
+    unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+trail.state+'/'+trail.city+'.json')
       .end(function(weather) {
         res.render('saved-trail', {user: req.session.user, trail: trail, weather: weather.body.forecast.txt_forecast.forecastday})
       })

@@ -1,9 +1,7 @@
-
-
 {{#if trail}}
 <section class="trailid">
 <p>
-  <h1>{{trail.name}}</h1>
+  <h2>{{trail.name}}</h2>
 </p>
 
 <p>{{trail.description}}</p>
@@ -15,9 +13,7 @@
   {{#each trail.activities}}
     <img class="thumbnail" src="{{thumbnail}}"/>
     <h4>{{activity_type_name}}</h4>
-    <p>
-      {{description}}
-    </p>
+    <p>{{description}}</p>
     <a href="{{url}}">More details</a>
     <!-- {{#each activity_type}}
     {{/each}} -->

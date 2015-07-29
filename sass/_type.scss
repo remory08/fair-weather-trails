@@ -19,17 +19,24 @@ h1, h2, h3, h4 {
 h1 {
   margin-top: 0;
   font-size: 3.998em;
-  color: $yellow;
-}
-
-h2 {font-size: 2.827em;}
-
-h3 {
-  font-size: 1.999em;
   color: darken($green, 30%);
 }
 
+h2 {font-size: 2.827em;
+  color: $yellow;
+}
+
+h3 {
+  font-size: 1.999em;
+  color: $orange;
+}
+
 h4 {font-size: 1.414em;}
+
+h5 {
+  color: darken($tan, 30%);
+}
+
 
 small, .font_small {font-size: 0.707em;}
 
@@ -39,4 +46,10 @@ small, .font_small {font-size: 0.707em;}
 
 .error {
   color: red;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid darken($orange, 30%);
+  color: darken($orange, 30%);
 }

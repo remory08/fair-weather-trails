@@ -1,7 +1,8 @@
-input[type='text'], #state {
+input[type='text'], #userState, input[type="email"], input[type="password"] {
   font-size: 14px;
   border-radius: 3px;
   margin-bottom: 10px;
   line-height: 2;
   padding: 5px;
+  margin-left: 10px;
 }

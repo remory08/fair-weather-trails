@@ -1,4 +1,5 @@
-<h1>Login</h1>
+<section class="login">
+<h2>Login</h2>
 
 <form action="/users/login" method="post">
   <p>
@@ -7,9 +8,10 @@
   <p>
     <input type="password" name="password" placeholder="enter your password" value="{{content.password}}">
   </p>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" id="login">
 </form>
 
 {{#each loginErrors}}
   <p class="error">{{this}}</p>
 {{/each}}
+</section>
