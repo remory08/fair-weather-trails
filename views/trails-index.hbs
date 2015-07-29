@@ -1,15 +1,17 @@
 {{#if weather}}
-  <div class="weather weather-head">
+<div class="weather weather-head">
   {{#if city}}
     <h2>3 Day forecast for {{city}}</h2>
   {{/if}}
+<section class="container">
   {{#each weather}}
-    <article class="small-weather">
-      <img src="{{icon_url}}" alt="" />
+    <article class="weathers">
+      <img src="{{icon_url}}"/>
       <h5 class="weather-title">{{title}}</h5>
       <p class="forecast">{{fcttext}}</p>
     </article>
   {{/each}}
+  </section>
   </div>
 {{/if}}
 
@@ -20,25 +22,27 @@
   {{/if}}
   {{#each trails}}
     <div class="trail-result">
-
-
     <form action="/trails/viewtrail/{{unique_id}}" method="get">
       <input type="text" name="name" value="{{name}}" hidden>
       <!-- <input type="text" name="directions" hidden value="{{directions}}"> -->
       <!-- <input type="text" name="activities" value={{activities}} hidden> -->
-      <input type="submit" value="{{name}}">
+      <input type="submit" value="{{name}}" id="trail-id">
     </form>
+
     {{#if description}}<p><h4>Description: </h4>{{description}}</p>{{/if}}
+
     {{#if activities}}
-    <p><h4>Activities:</h4>
       {{#each activities}}
-        <img src="{{thumbnail}}" class="thumbnail" />
-        <p>
-          {{activity_type_name}}
-        </p>
+        <p><img src="{{thumbnail}}" class="thumbnail"/></p>
       {{/each}}
+      <div class="activities">
+        <p class='act'><h4>Activities:</h4></p>
+      {{#each activities}}
+        <p>{{activity_type_name}}</p>
+      {{/each}}
+      </div>
       {{/if}}
-    </p>
+
     </div>
   {{/each}}
   </div>

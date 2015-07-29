@@ -1,25 +1,59 @@
 input[type='submit'], button {
-  border: red;
-  color: white;
+  background-color: $yellow;
+  color: darken($green, 30%);
+  border: none;
   border-radius: 3px;
+  font-size: 18px;
+  padding: 5px 15px;
+  line-height: 2;
+  margin: 10px;
 }
 
 
 #trail-name {
-  background-color: $tan;
-  color: $orange;
+  font-weight: bold;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 16px;
   padding: 10px;
-  width: 100%;
-
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 #findtrail {
   margin-top: 20px;
   padding: 10px;
   font-size: 16px;
-  background-color: $yellow;
-  color: black;
+}
 
+#delete {
+  background: none;
+  color: $orange;
+  float: right;
+}
+
+#trail-id {
+  width: 90%;
+}
+
+#register, #login, #trail-name, #delete {
+  background-color: $pale;
+  border: 3px solid $orange;
+  color: $orange;
+  &:hover {
+    background-color: $yellow;
+  }
+}
+
+#delete {
+  border: none;
+}
+
+#findtrail, #saveTrail {
+  background-color: white;
+  border: 3px solid $orange;
+  color: $orange;
+  &:hover {
+    background-color: $yellow;
+  }
 }

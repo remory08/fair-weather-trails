@@ -1,7 +1,7 @@
 {{#if user}}
   <section class="trail">
     <p id="profile-header">
-      <h3>{{user}}'s Trails</h3>
+      <h2>{{user}}'s Trails</h2>
     </p>
 {{/if}}
 {{#if trails}}
@@ -14,16 +14,14 @@
     {{#each activities}}
       <img src="{{thumbnail}}" class="icon" />
     {{/each}}
-    <p><h5>Nearest city: {{city}}</h5></p>
-    <p>
-      <h5>Activities: </h5>
-    </p>
+    <p><h5>Nearest city: </h5><h6>{{city}}</h6> </p>
+    <p class='desc'><h5>Activities: </h5></p>
     {{#each activities}}
       <li>{{activity_type_name}}</li>
     {{/each}}
     <form action="/users/profile/trails/:id" method="post">
       <input type="text" hidden name="trailId" value="{{_id}}">
-      <input type="submit" value="X">
+      <input type="submit" value="Remove" id="delete">
     </form>
   </article>
   {{/each}}

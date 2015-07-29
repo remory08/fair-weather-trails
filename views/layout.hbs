@@ -3,26 +3,6 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/app.css' />
-    <style>
-      #map-canvas {
-        width: 800px;
-        height: 600px;
-        margin-left: 15%;
-      }
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script>
-      function initialize() {
-        var mapCanvas = document.getElementById('map-canvas');
-        var mapOptions = {
-            center: new google.maps.LatLng(38.9709948,-105.5589686),
-            zoom: 7,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-      }
-       google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
   </head>
   <body>
     <div class="user-nav">
@@ -35,20 +15,17 @@
         |
         <a href="/users/profile/:id">Saved Trails</a>
         |
-        <a href="/trails"><button type="button" name="button">Find a Trail</button></a>
+        <a href="/trails">Find a Trail</a>
       </p>
       {{else}}
-      <p>log in to have fun</p>
       <a href="/users/login">Login</a>
       |
       <a href="/users/register">Register</a>
 <!--       <a href="/auth/google">Login/Register with your Google Account</a>
- -->    {{/if}}
+ --> {{/if}}
     </nav>
     <h1 class="jumbotron">Fair Weather Trails</h1>
     </div>
     {{{body}}}
-
-
   </body>
 </html>
