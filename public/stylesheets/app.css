@@ -82,7 +82,9 @@ table {
   top: 690px;
   width: 70%;
   margin-left: 15%;
-  padding: 10px; }
+  padding: 10px;
+  padding-bottom: 30px;
+  margin-bottom: 20px; }
   .weather .weather-tile {
     width: 21%;
     float: left;
@@ -103,6 +105,7 @@ table {
     margin-top: 100px; }
 
 .weather-head {
+  background-color: rgba(255, 255, 255, 0.9);
   width: 89%;
   margin-left: 5%;
   margin-bottom: 30px;
@@ -184,6 +187,11 @@ border-radius: 5px; */ }
 .thumbnail {
   margin: 10px; }
 
+#map-canvas {
+  width: 800px;
+  height: 600px;
+  margin-left: 15%; }
+
 .thumbnail {
   max-width: 300px;
   float: left;
@@ -237,12 +245,13 @@ input[type='submit'], button {
 #trail-id {
   width: 90%; }
 
-#register, #login, #trail-name, #delete {
+#register, #login, #trail-name, #delete, #trail-id {
   background-color: #EBF5DF;
   border: 3px solid #E8871E;
   color: #E8871E; }
-  #register:hover, #login:hover, #trail-name:hover, #delete:hover {
-    background-color: #EDBF58; }
+  #register:hover, #login:hover, #trail-name:hover, #delete:hover, #trail-id:hover {
+    background-color: #E8871E;
+    color: #EBF5DF; }
 
 #delete {
   border: none; }
@@ -252,7 +261,8 @@ input[type='submit'], button {
   border: 3px solid #E8871E;
   color: #E8871E; }
   #findtrail:hover, #saveTrail:hover {
-    background-color: #EDBF58; }
+    background-color: #E8871E;
+    color: white; }
 
 html {
   font-size: 1em; }
@@ -311,6 +321,12 @@ a {
   background: -moz-linear-gradient(#EDBF58, #E8871E);
   background: linear-gradient(#EDBF58, #E8871E);
   height: 150px; }
+
+#map-canvas {
+  width: 800px;
+  height: 600px;
+  margin-left: 15%;
+  background-color: grey; }
 
 html {
   background: url(../images/bg.jpg) no-repeat center center fixed;

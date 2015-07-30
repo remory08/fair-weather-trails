@@ -102,13 +102,18 @@ router.get('/profile/trails/:id', function(req, res, next) {
   trails.findOne({_id: req.query.trailId}, function (err, trail) {
     if (err) return err
     console.log(trail)
-    console.log(trail.city)
+    console.log(trail.state)
+    if (!trail.state) {
+      res.render('saved-trail', {user: req.session.user, trail: trail})
+    }
+    else {
     unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+trail.state+'/'+trail.city+'.json')
       .end(function(weather) {
         res.render('saved-trail', {user: req.session.user, trail: trail, weather: weather.body.forecast.txt_forecast.forecastday})
       })
+    }
   })
-})
+});
 
 router.post('/profile/trails/:id', function (req, res, next) {
   trails.findOne({_id: req.body.trailId}, function (err, trail) {
