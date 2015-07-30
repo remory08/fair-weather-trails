@@ -38,6 +38,8 @@
   width: 70%;
   margin-left: 15%;
   padding: 10px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
 
   .weather-tile {
     width: 21%;
@@ -64,6 +66,7 @@
 }
 
 .weather-head {
+  background-color: rgba(255,255,255, 0.9);
   width: 89%;
   margin-left: 5%;
   margin-bottom: 30px;
@@ -158,4 +161,10 @@ border-radius: 5px; */
 
 .thumbnail {
   margin: 10px;
+}
+
+#map-canvas {
+  width: 800px;
+  height: 600px;
+  margin-left: 15%;
 }

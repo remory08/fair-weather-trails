@@ -22,7 +22,7 @@ router.get('/index', function(req, res) {
     res.render('trailSearch', {errors: searchErrors})
   }
   else {
-    unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]='+req.query.city+'&q[state_eq]='+req.query.state+'&radius='+req.query.radius)
+    unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]='+req.query.city+'&q[state_eq]='+req.query.state)
       .end(function (trails) {
         if (trails.body.places.activities) {
         console.log(trails.body.places.activities)
@@ -36,16 +36,25 @@ router.get('/index', function(req, res) {
 })
 
 router.get('/viewtrail/:id', function(req, res,next) {
+  // console.log(req.query)
   unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[name_eq]='+req.query.name)
   // console.log(req.params.id)
   // req.params.id = unique_id
   .end(function (trail) {
     trail = trail.body.places.shift()
+    console.log(trail)
     console.log(trail.activities)
+    var x = trail.activities.shift()
+    console.log(x.description)
+    if (!trail.state) {
+      res.render('show', {trail: trail, user: req.session.user})
+    }
+    else {
     unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+trail.state+'/'+trail.city+'.json')
     .end(function(weather) {
       res.render('show', {trail: trail, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})
-    })
+      })
+    }
   })
 });
 
