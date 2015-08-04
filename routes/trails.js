@@ -24,12 +24,17 @@ router.get('/index', function(req, res) {
   else {
     unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]='+req.query.city+'&q[state_eq]='+req.query.state)
       .end(function (trails) {
+        // console.log(trails.body.places)
+        // console.log(trails.body.places.lat,trails.body.places.lon)
+        var x = trails.body.places[0];
+        console.log(x.lat, x.lon)
         if (trails.body.places.activities) {
-        console.log(trails.body.places.activities)
+        console.log('activities found')
         }
         unirest.get('http://api.wunderground.com/api/' + process.env.WEATHER_API_KEY +'/forecast/q/'+req.query.state+'/'+req.query.city+'.json')
           .end(function (weather) {
           res.render('trails-index', {city: req.query.city, trails: trails.body.places, user: req.session.user, weather: weather.body.forecast.txt_forecast.forecastday})
+          // res.json(trails)
           })
       })
   }
@@ -44,8 +49,8 @@ router.get('/viewtrail/:id', function(req, res,next) {
     trail = trail.body.places.shift()
     console.log(trail)
     console.log(trail.activities)
-    var x = trail.activities.shift()
-    console.log(x.description)
+    // var x = trail.activities.shift()
+    // console.log(x.description)
     if (!trail.state) {
       res.render('show', {trail: trail, user: req.session.user})
     }
@@ -58,6 +63,12 @@ router.get('/viewtrail/:id', function(req, res,next) {
   })
 });
 
+router.get('/locations', function (req, res, next) {
+  res.json({foo:'bar'})
+})
+
+//res.json
+//use orbit on the client side- send get request in orbit to /locations and console log response in orbit
 
 
 module.exports=router;
