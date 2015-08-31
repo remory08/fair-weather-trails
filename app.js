@@ -91,7 +91,14 @@ app.get('/styleguide', function (req, res) {res.render('styleguide')})
 //       res.end()
 //       })
 // })
-
+app.get('/locations', function (req, res) {
+  // console.log('hello from app.js');
+  unirest.get('https://outdoor-data-api.herokuapp.com/api.json?api_key=' + process.env.TRAILS_API_KEY+'&q[city_eq]=Breckenridge&q[state_eq]=Colorado')
+  .end(function (response) {
+    var trails= response.body.places
+  })
+    res.json(trails)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

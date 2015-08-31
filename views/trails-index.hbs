@@ -1,4 +1,4 @@
-{{#if weather}}
+<!-- {{#if weather}}
 <div class="weather weather-head">
   {{#if city}}
     <h2>3 Day forecast for {{city}}</h2>
@@ -13,16 +13,31 @@
   {{/each}}
   </section>
   </div>
-{{/if}}
+{{/if}} -->
 
 
 
 {{#if trails}}
+  <div id="map-canvas"></div>
   <div class="trail-results">
   {{#if city}}
     <h2>Trails Near {{city}}</h2>
   {{/if}}
+<script type="text/javascript">
+  var myMap= mapInitialize();
+</script>
   {{#each trails}}
+
+    {{#if lat}}
+      <script type="text/javascript">
+      var latlng = new google.maps.LatLng({{lat}}, {{lon}});
+      var marker = new google.maps.Marker({
+          position: latlng,
+          map: myMap,
+          title: name.toString()
+      })
+      </script>
+    {{/if}}
     <div class="trail-result">
     <form action="/trails/viewtrail/{{unique_id}}" method="get">
       <input type="text" name="name" value="{{name}}" hidden>
